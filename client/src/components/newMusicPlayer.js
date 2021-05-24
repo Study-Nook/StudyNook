@@ -5,7 +5,7 @@ import { useStateValue } from '../store/stateProvider';
 
 import SpotifyWebApi from 'spotify-web-api-js';
 
-const MusicPlayer = () => {
+const NewMusicPlayer = () => {
   const [url_song, setUrlSong] = useState('');
   const [{ playingNow }, dispatch] = useStateValue();
 
@@ -164,4 +164,4 @@ const MusicPlayer = () => {
   );
 };
 
-export default MusicPlayer;
+export default NewMusicPlayer;

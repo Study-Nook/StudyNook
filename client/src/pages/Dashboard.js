@@ -16,7 +16,7 @@ const Dashboard = () => {
   ]);
   var spotifyApi = new SpotifyWebApi();
   spotifyApi.setAccessToken(
-    'BQDC6U_0cZxwThLRa6BDQ7LY_wIVoLP6Fq47DtaFLbMwazoQ9biRQxnLFsQ1UcdT0pqCod0d1tIJWfsXITzRo1D3-rHi6EJNP895u3kxRBShPwoNjhHEh88YgGqugWU1GlY7-5hHTQr4fz263Y2tczCWsLlFFTvRW1OTqig'
+    'BQB-Fi6xxBubDsxcoRLWa4UETP4BnVGQ6FFvJ7-UQXrake40NK-3SQN-TIBFATm-92f2h2Z2CWUTlrR6CDX9smz1dPM6-gp1Jagg4Kj_drLM9PoOq9sQh7lXwmZU62_A_CuqmvGWKm5AffM6uZXxFeyVqk-3NlyGdMcmCKs'
   );
 
   useEffect(() => {

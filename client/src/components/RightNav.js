@@ -1,5 +1,6 @@
 import React from 'react';
 import MusicPlayer from './musicPlayer';
+import NewMusicPlayer from './newMusicPlayer';
 import RecentlyPlayed from './RecentlyPlayed';
 
 const RightNav = () => {
@@ -10,7 +11,7 @@ const RightNav = () => {
       <RecentlyPlayed name='Lorem Ipsum' link='abc' />
 
       <h1 className='text-xl text-white mt-8'>Playing Now</h1>
-      <MusicPlayer />
+      <NewMusicPlayer />
     </div>
   );
 };

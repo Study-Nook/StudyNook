@@ -34,7 +34,7 @@ const Sidenav = (props) => {
         </div>
         <div className='flex w-48 h-16 rounded-xl text-white  justify-between items-center bg-bgselected  mt-48 mx-7 px-8 cursor-pointer'>
           <BiLogOut className=' text-3xl  text-white '></BiLogOut>
-          <span>Logout</span>
+          <span className='transform -translate-x-8'>Logout</span>
         </div>
       </div>
     </div>
