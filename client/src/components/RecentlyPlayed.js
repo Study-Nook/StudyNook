@@ -5,15 +5,12 @@ import { useStateValue } from '../store/stateProvider';
 const RecentlyPlayed = (props) => {
   const [allstate, dispatch] = useStateValue();
 
-  // const handleSong = () => {
-  //   dispatch({
-  //     type: 'SET_PLAYING',
-  //     playingNow: 'abc',
-  //   });
-  // };
-
-  // handleSong();
-  console.log(allstate);
+  const handleSong = () => {
+    dispatch({
+      type: 'SET_PLAYING',
+      playingNow: 'abc',
+    });
+  };
 
   return (
     <div className='flex bg-bglight rounded-xl mt-5 text-white justify-between items-center px-5 py-3'>
