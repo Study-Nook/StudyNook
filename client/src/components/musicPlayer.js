@@ -1,34 +1,56 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai';
 import { MdSkipNext, MdSkipPrevious } from 'react-icons/md';
+import { useStateValue } from '../store/stateProvider';
 
 import SpotifyWebApi from 'spotify-web-api-js';
 
 const MusicPlayer = () => {
   const [url_song, setUrlSong] = useState('');
+  const [{ playingNow }, dispatch] = useStateValue();
+
+  console.log(playingNow);
+
+  // const song = [
+  //   {
+  //     image: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
+  //     name: 'First Song',
+  //     author: 'First',
+  //   },
+  // ];
 
   const song = [
     {
-      url: '',
+      url: 'https://firebasestorage.googleapis.com/v0/b/offisca-2d74b.appspot.com/o/Believer%20Mp3%20Imagine%20Dragons.mp3?alt=media&token=7daec363-ece9-4bb5-a470-bbb59e219b00',
+      image: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
+      name: 'Second Song',
+      author: 'First',
+    },
+    {
+      url: `${playingNow}`,
+      image: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
+      name: 'Third Song',
+      author: 'First',
+    },
+    {
+      url: 'https://firebasestorage.googleapis.com/v0/b/offisca-2d74b.appspot.com/o/Believer%20Mp3%20Imagine%20Dragons.mp3?alt=media&token=7daec363-ece9-4bb5-a470-bbb59e219b00',
       image: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
       name: 'First Song',
       author: 'First',
     },
   ];
+  console.log(playingNow);
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [recents, setRecents] = useState(song);
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
 
   const audioRef = useRef(new Audio(song[trackIndex].url));
   const intervalRef = useRef(0);
-  const isReady = useRef(false);
+  const isReady = useRef(true);
 
   const { duration } = audioRef.current;
-
-  const currentPercentage =
-    duration < 100 ? `${(trackProgress / duration) * 100}%` : '0%';
 
   const startTimer = () => {
     clearInterval(intervalRef.current);

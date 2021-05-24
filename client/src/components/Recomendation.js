@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
 import { AiFillHeart, AiFillPlayCircle } from 'react-icons/ai';
+import { useStateValue } from '../store/stateProvider';
 
 const Recomendation = (props) => {
   const [like, setLike] = useState(false);
   const [song, setSong] = useState(false);
+
+  const [{ playingNow }, dispatch] = useStateValue();
+
+  const handleSong = (link) => {
+    dispatch({
+      type: 'SET_PLAYING',
+      playingNow: link,
+    });
+  };
+
   return (
     <div className='flex bg-bglight rounded-xl mt-5  justify-between items-center px-10 py-4'>
       <div className='flex items-center'>
@@ -20,7 +31,10 @@ const Recomendation = (props) => {
 
       <span className='text-white text-sm w-56'>{props.singer}</span>
 
-      <AiFillPlayCircle className='text-3xl cursor-pointer text-primary' />
+      <AiFillPlayCircle
+        onClick={() => handleSong(props.link)}
+        className='text-3xl cursor-pointer text-primary'
+      />
     </div>
   );
 };

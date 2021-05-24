@@ -1,5 +1,5 @@
 export const initialState = {
-  playingNow: 'hello',
+  playingNow: '',
 };
 
 function reducer(state, action) {
