@@ -1,10 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: Overpass, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -13,6 +14,81 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.gradient-text {
+  /* Fallback: Set a background color. */
+  background-color: white;
+
+  /* Create the gradient. */
+  background-image: linear-gradient(
+    110.14deg,
+    rgba(235, 67, 188, 0.54) 2.69%,
+    #6132af 24.06%,
+    rgba(44, 183, 224, 0.8125) 44.17%
+  );
+  background-size: 100%;
+  background-repeat: repeat;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+
+.total {
+  height: 0.8px;
+}
+.box-1 {
+  background: linear-gradient(
+    113.96deg,
+    #6132af 0%,
+    rgba(97, 50, 175, 0.32) 100%
+  );
+}
+
+.box-2 {
+  background: linear-gradient(
+    112.51deg,
+    #eb43bc 2.25%,
+    rgba(235, 67, 188, 0.42) 100%
+  );
+}
+
+.box-3 {
+  background: linear-gradient(
+    114.18deg,
+    rgba(26, 227, 240, 0.75) 0%,
+    rgba(26, 227, 240, 0.24) 100%
+  );
+}
+
+.box-4 {
+  background: linear-gradient(
+    114.18deg,
+    #929292 0%,
+    rgba(42, 42, 58, 0.87) 100%
+  );
+}
+
+.box-5 {
+  background: linear-gradient(
+    113.96deg,
+    #b767c5 0%,
+    rgba(183, 103, 197, 0.32) 100%
+  );
+}
+
+.box-6 {
+  background: linear-gradient(
+    113.96deg,
+    #b4586e 0%,
+    rgba(180, 88, 110, 0.35) 100%
+  );
+}
+
+.form-box {
+  box-shadow: 0px 10px 200px rgba(0, 0, 0, 0.67);
 }
 
 @tailwind utilities;
