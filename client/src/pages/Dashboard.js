@@ -16,10 +16,11 @@ const Dashboard = () => {
   ]);
   var spotifyApi = new SpotifyWebApi();
   spotifyApi.setAccessToken(
-    'BQBJqw6P8hHCNxcPEWQfsHIBC8ZkmV_GpC23JKrEfb56Sxut0iBKJUmjshJ8KBC4DeFWL6c0AsNA4DdU8x04s4J04cPC9Iq6TrjF5fKiWJL5vODV-jWn6n9G8WmE6PRhYNFp-RfJ_j4qvE3h4pODRDZomijpP1wCQV8qKn4'
+    'BQD_3ILRZMd-hbX-9vOYQMeBPZKap4dtO7P-3PIB6SGVJxS4taXhi7_CrYJ8QKV5uIf4zXMHAD2LPDfTfXyDbJ63DtWpnECdtDsHDtVglB48DhZ0nM8CCLvZkvDPAdePXvXdA687AeSjuEljK6CIKkbwCtnySHfV7OBsT5c'
   );
 
   useEffect(() => {
+    console.log(spotifyApi.getCategory());
     spotifyApi.getCategoryPlaylists(mood).then(
       function (data) {
         //setHits(data.playlists.items);
@@ -111,6 +112,7 @@ const Dashboard = () => {
                 name={item?.track?.name}
                 singer={item.track.artists[0].name}
                 link={item.track.preview_url}
+                albumart={item?.track?.album?.images[0]}
               />
             ))}
           </div>

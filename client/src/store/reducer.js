@@ -1,5 +1,8 @@
 export const initialState = {
   playingNow: null,
+  name: '',
+  singer: '',
+  image: null,
 };
 
 function reducer(state, action) {
@@ -8,6 +11,9 @@ function reducer(state, action) {
     case 'SET_PLAYING':
       return {
         playingNow: action.playingNow,
+        name: action.name,
+        singer: action.singer,
+        image: action.image,
       };
 
     default:

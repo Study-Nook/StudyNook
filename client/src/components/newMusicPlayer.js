@@ -8,13 +8,9 @@ const NewMusicPlayer = () => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [{ playingNow }, dispatch] = useStateValue();
+  const [{ playingNow, singer, name, image }, dispatch] = useStateValue();
 
   const handleDispatch = (item, value) => {
-    dispatch({
-      type: 'SET_PLAYING',
-      playingNow: item,
-    });
     setIsPlaying(value);
 
     console.log(playingNow);
@@ -23,15 +19,15 @@ const NewMusicPlayer = () => {
   const song = [
     {
       url: playingNow,
-      image: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
-      name: 'Pehla',
-      author: 'First',
+      image: image,
+      name: name,
+      author: singer,
     },
     {
-      url: 'https://firebasestorage.googleapis.com/v0/b/offisca-2d74b.appspot.com/o/Believer%20Mp3%20Imagine%20Dragons.mp3?alt=media&token=7daec363-ece9-4bb5-a470-bbb59e219b00',
-      image: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
-      name: 'Doosra',
-      author: 'First',
+      url: playingNow,
+      image: image,
+      name: name,
+      author: singer,
     },
   ];
 
@@ -124,10 +120,10 @@ const NewMusicPlayer = () => {
   }, []);
 
   return (
-    <div className='bg-bglight h-80 w-full rounded-xl mt-5 p-2'>
-      <div className='image bg-dark h-1/2 w-full rounded-xl overflow-hidden'>
+    <div className='bg-bglight w-full rounded-xl mt-5 p-2'>
+      <div className='image bg-dark h-36 w-full rounded-xl overflow-hidden'>
         <img
-          src='https://homepages.cae.wisc.edu/~ece533/images/airplane.png'
+          src={song[trackIndex].image?.url}
           alt='song_thumbnail'
           className='h-full w-full object-cover'
         />

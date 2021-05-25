@@ -6,12 +6,15 @@ const Recomendation = (props) => {
   const [like, setLike] = useState(false);
   const [song, setSong] = useState(false);
 
-  const [{ playingNow }, dispatch] = useStateValue();
+  const [{ playingNow, singer, name, image }, dispatch] = useStateValue();
 
-  const handleSong = (link) => {
+  const handleSong = (link, singer, image, name) => {
     dispatch({
       type: 'SET_PLAYING',
       playingNow: link,
+      singer: singer,
+      image: image,
+      name: name,
     });
   };
 
@@ -32,7 +35,9 @@ const Recomendation = (props) => {
       <span className='text-white text-sm w-56'>{props.singer}</span>
 
       <AiFillPlayCircle
-        onClick={() => handleSong(props.link)}
+        onClick={() =>
+          handleSong(props.link, props.singer, props.albumart, props.name)
+        }
         className='text-3xl cursor-pointer text-primary'
       />
     </div>
