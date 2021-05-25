@@ -1,5 +1,5 @@
 export const initialState = {
-  playingNow: '',
+  playingNow: null,
 };
 
 function reducer(state, action) {

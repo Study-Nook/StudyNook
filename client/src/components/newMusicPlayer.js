@@ -2,50 +2,51 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai';
 import { MdSkipNext, MdSkipPrevious } from 'react-icons/md';
 import { useStateValue } from '../store/stateProvider';
-
 import SpotifyWebApi from 'spotify-web-api-js';
 
 const NewMusicPlayer = () => {
-  const [url_song, setUrlSong] = useState('');
+  const [trackIndex, setTrackIndex] = useState(0);
+  const [trackProgress, setTrackProgress] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [{ playingNow }, dispatch] = useStateValue();
 
-  console.log(playingNow);
+  const handleDispatch = (item, value) => {
+    dispatch({
+      type: 'SET_PLAYING',
+      playingNow: item,
+    });
+    setIsPlaying(value);
+
+    console.log(playingNow);
+  };
 
   const song = [
     {
-      url: 'https://firebasestorage.googleapis.com/v0/b/offisca-2d74b.appspot.com/o/Believer%20Mp3%20Imagine%20Dragons.mp3?alt=media&token=7daec363-ece9-4bb5-a470-bbb59e219b00',
+      url: playingNow,
       image: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
-      name: 'Second Song',
-      author: 'First',
-    },
-    {
-      url: `${playingNow}`,
-      image: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
-      name: 'Third Song',
+      name: 'Pehla',
       author: 'First',
     },
     {
       url: 'https://firebasestorage.googleapis.com/v0/b/offisca-2d74b.appspot.com/o/Believer%20Mp3%20Imagine%20Dragons.mp3?alt=media&token=7daec363-ece9-4bb5-a470-bbb59e219b00',
       image: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
-      name: 'First Song',
+      name: 'Doosra',
       author: 'First',
     },
   ];
 
-  console.log(playingNow);
-
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [recents, setRecents] = useState(song);
-  const [trackIndex, setTrackIndex] = useState(0);
-  const [trackProgress, setTrackProgress] = useState(0);
-
-  const audioRef = useRef(new Audio(song[trackIndex].url));
-  const intervalRef = useRef(0);
-  const isReady = useRef(true);
+  const audioRef = useRef(new Audio(playingNow));
+  const intervalRef = useRef();
+  const isReady = useRef(false);
 
   const { duration } = audioRef.current;
 
+  const currentPercentage = duration
+    ? `${(trackProgress / duration) * 100}%`
+    : '0%';
+
   const startTimer = () => {
+    // Clear any timers already running
     clearInterval(intervalRef.current);
 
     intervalRef.current = setInterval(() => {
@@ -54,16 +55,18 @@ const NewMusicPlayer = () => {
       } else {
         setTrackProgress(audioRef.current.currentTime);
       }
-    });
+    }, []);
   };
 
   const onScrub = (value) => {
+    // Clear any timers already running
     clearInterval(intervalRef.current);
     audioRef.current.currentTime = value;
     setTrackProgress(audioRef.current.currentTime);
   };
 
   const onScrubEnd = () => {
+    // If not already playing, start
     if (!isPlaying) {
       setIsPlaying(true);
     }
@@ -88,17 +91,20 @@ const NewMusicPlayer = () => {
 
   useEffect(() => {
     if (isPlaying) {
+      console.log('isPlaying');
       audioRef.current.play();
       startTimer();
     } else {
       audioRef.current.pause();
+      console.log('isPlaying false');
     }
   }, [isPlaying]);
 
+  // Handles cleanup and setup when changing tracks
   useEffect(() => {
     audioRef.current.pause();
 
-    audioRef.current = new Audio(song[trackIndex].url);
+    audioRef.current = new Audio(playingNow);
     setTrackProgress(audioRef.current.currentTime);
 
     if (isReady.current) {
@@ -108,8 +114,14 @@ const NewMusicPlayer = () => {
     } else {
       isReady.current = true;
     }
-    setRecents([...recents, song[trackIndex]]);
   }, [trackIndex]);
+
+  useEffect(() => {
+    return () => {
+      audioRef.current.pause();
+      clearInterval(intervalRef.current);
+    };
+  }, []);
 
   return (
     <div className='bg-bglight h-80 w-full rounded-xl mt-5 p-2'>
@@ -129,8 +141,8 @@ const NewMusicPlayer = () => {
             value={trackProgress}
             step='1'
             min='0'
-            max={duration ? duration : `${duration}`}
             className='slider h-1 p-0 w-full'
+            max={duration ? duration : `${duration}`}
             onChange={(e) => onScrub(e.target.value)}
             onMouseUp={onScrubEnd}
             onKeyUp={onScrubEnd}
@@ -143,13 +155,18 @@ const NewMusicPlayer = () => {
             />
             {isPlaying ? (
               <AiFillPauseCircle
-                onClick={() => setIsPlaying(false)}
+                onClick={() => {
+                  setIsPlaying(false);
+                }}
                 className='text-primary text-4xl cursor-pointer'
               />
             ) : (
               <AiFillPlayCircle
-                onClick={() => setIsPlaying(true)}
                 className='text-primary text-4xl cursor-pointer'
+                onClick={() => {
+                  handleDispatch(playingNow, true);
+                  toNextTrack();
+                }}
               />
             )}
 
