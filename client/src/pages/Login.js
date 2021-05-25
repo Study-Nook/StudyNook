@@ -45,7 +45,7 @@ const Login = () => {
           <div className='line w-full h-0.5 bg-input relative'></div>
         </div>
 
-        <form action=''>
+        <form action='/dashboard'>
           <div className='w-full px-12'>
             <Input title='Email ID' type='email' />
           </div>
@@ -55,12 +55,16 @@ const Login = () => {
           </div>
 
           <p className='text-center'>
-            <button className='mt-10 focus:outline-none bg-primary px-4 py-1 pt-2 text-white rounded-xl text-lg transform transition-transform hover:-translate-y-0.5'>
-              Login
-            </button>
+            <a href='/dashboard'>
+              <button className='mt-10 focus:outline-none bg-primary px-4 py-1 pt-2 text-white rounded-xl text-lg transform transition-transform hover:-translate-y-0.5'>
+                Login
+              </button>
+            </a>
             <p className='text-center mt-5 text-white'>
-              Not a member yet?{' '}
-              <span className='text-primary cursor-pointer'>Signup</span>
+              Not a member yet?
+              <a href='/register'>
+                <span className='text-primary cursor-pointer'>Signup</span>
+              </a>
             </p>
           </p>
         </form>

@@ -2,7 +2,7 @@ export const initialState = {
   playingNow: null,
   name: '',
   singer: '',
-  image: null,
+  image: { url: 'https://melodyyaksh.s3.amazonaws.com/Rectangle+17.png' },
 };
 
 function reducer(state, action) {

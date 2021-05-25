@@ -47,7 +47,7 @@ const Register = () => {
           <div className='line w-full h-0.5 bg-input relative'></div>
         </div>
 
-        <form action=''>
+        <form action='/login'>
           <div className='flex w-full px-12 space-x-8'>
             <div className='w-full'>
               <Input title='Name' type='text' />
@@ -68,12 +68,16 @@ const Register = () => {
             </div>
           </div>
           <p className='text-center'>
-            <button className='mt-10 focus:outline-none bg-primary px-4 py-1 pt-2 text-white rounded-xl text-lg transform transition-transform hover:-translate-y-0.5'>
-              Signup
-            </button>
+            <a href='/login'>
+              <button className='mt-10 focus:outline-none bg-primary px-4 py-1 pt-2 text-white rounded-xl text-lg transform transition-transform hover:-translate-y-0.5'>
+                Signup
+              </button>
+            </a>
             <p className='text-center mt-5 text-white'>
               Already a member?{' '}
-              <span className='text-primary cursor-pointer'>Login</span>
+              <a href='/login'>
+                <span className='text-primary cursor-pointer'>Login</span>
+              </a>
             </p>
           </p>
         </form>

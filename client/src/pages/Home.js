@@ -18,9 +18,11 @@ const Home = () => {
           <p className='cursor-pointer text-lg text-white ml-14'>Home</p>
           <p className='cursor-pointer text-lg text-white ml-14'>About</p>
           <p className='text-lg text-white ml-14'>
-            <button className='bg-primary px-3 py-2 rounded-lg text-lg transform transition-transform hover:-translate-y-1'>
-              Login | Signup
-            </button>
+            <a href='/register'>
+              <button className='bg-primary px-3 py-2 rounded-lg text-lg transform transition-transform hover:-translate-y-1'>
+                Login | Signup
+              </button>
+            </a>
           </p>
         </div>
       </div>
@@ -35,9 +37,11 @@ const Home = () => {
           <p className='mt-1 text-4xl gradient-text font-semibold'>
             Music made awesome
           </p>
-          <button className='mt-8 bg-primary px-4 py-2 pt-3 text-white rounded-lg text-2xl transform transition-transform hover:-translate-y-1'>
-            Get Started
-          </button>
+          <a href='/register'>
+            <button className='mt-8 bg-primary px-4 py-2 pt-3 text-white rounded-lg text-2xl transform transition-transform hover:-translate-y-1'>
+              Get Started
+            </button>
+          </a>
         </div>
         <div className='w-1/2 z-10'>
           <img
